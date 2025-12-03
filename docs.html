@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorry Jeevan Mama! 🥺💕</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@400;700&display=swap');
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', cursive;
+            background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff1493;
+            animation: float 6s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.3);
+            max-width: 400px;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            font-size: 2.5em;
+            color: #ff69b4;
+            margin: 0 0 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: wiggle 1s infinite;
+        }
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+        .bear {
+            font-size: 4em;
+            margin: 20px 0;
+            animation: wave 2s infinite;
+        }
+        @keyframes wave {
+            0%, 100% { transform: rotate(0); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
+        }
+        p {
+            font-size: 1.2em;
+            color: #333;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+        .forgive-btn {
+            background: linear-gradient(45deg, #ff69b4, #ffb6c1);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.3em;
+            font-family: 'Fredoka One', cursive;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 105, 180, 0.4);
+            transition: all 0.3s;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .forgive-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(255, 105, 180, 0.6);
+        }
+        .happy {
+            display: none;
+            animation: celebrate 1s ease-out;
+        }
+        @keyframes celebrate {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    <div class="container">
+        <h1>I'm So Sorry Macha! 🐻💖</h1>
+        <div class="bear">🐻🥺</div>
+        <p>Jeevan Mama, please forgive me! I didn't mean to upset you. You're the best mama ever! 😘</p>
+        <button class="forgive-btn" onclick="forgive()">Do you forgive me? 💕</button>
+        <div id="happy" class="happy">
+            <h1>Yay! Thank you Mama! 🎉🥰</h1>
+            <p>Love you forever! Let's hug it out! 🤗</p>
+            <div class="bear" style="font-size: 5em;">🐻❤️🐻</div>
+        </div>
+    </div>
+    <div class="confetti" id="confetti"></div>
+
+    <script>
+        // Floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '💕';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.getElementById('hearts').appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+        setInterval(createHeart, 300);
+
+        // Forgive function
+        function forgive() {
+            document.querySelector('.forgive-btn').style.display = 'none';
+            document.getElementById('happy').style.display = 'block';
+            confetti();
+        }
+
+        // Simple confetti
+        function confetti() {
+            const confettiDiv = document.getElementById('confetti');
+            for (let i = 0; i < 100; i++) {
+                const conf = document.createElement('div');
+                conf.style.position = 'fixed';
+                conf.style.left = Math.random() * 100 + '%';
+                conf.style.top = '-10px';
+                conf.style.width = '10px';
+                conf.style.height = '10px';
+                conf.style.background = ['#ff69b4', '#ffb6c1', '#ff1493'][Math.floor(Math.random() * 3)];
+                conf.style.animation = `float ${Math.random() * 3 + 2}s linear forwards`;
+                confettiDiv.appendChild(conf);
+                setTimeout(() => conf.remove(), 5000);
+            }
+        }
+    </script>
+</body>
+</html>
